@@ -1,32 +1,32 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-    get 'scores/index'
-    get 'scores/show'
-    get 'cotegories/index'
-    get 'cotegories/show'
-    get 'cotegories/edit'
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
+    root to: 'homes#top'
+    resources :scores, only: [:index, :show, :destroy]
+    resources :cotegories, except: [:new]
+    resources :users, only: [:index, :edit, :show, :update]
   end
   namespace :public do
-    get 'mylists/show'
-    get 'mylists/edit'
-    get 'mylists/new'
-    get 'users/show'
-    get 'users/edit'
-    get 'homes/top'
-    get 'homes/about'
-    get 'scores/index'
-    get 'scores/show'
-    get 'scores/edit'
-    get 'scores/new'
+    root to: 'homes#top'
+    get 'about' => 'homes#about', as: 'about'
+    resources :scores do
+      resources :comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
+    resources :mylists
+    
+    get 'users/mypage' => 'users#show', as: 'mypage'
+    get 'users/info/edit' => 'users#edit', as: 'info_edit'
+    patch 'users/info' => 'users#update', as: 'info'
+    get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
   end
+  
   devise_for :users, skip: [:password], controllers:{
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
   devise_for :admins, skip: [:registrations, :password], controllers:{
     sessions: 'admin/sessions'
   }
