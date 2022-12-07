@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top' #管理者側のルートをtop画面にする
     resources :scores, only: [:index, :show, :destroy]
-    resources :cotegories, except: [:new]
+    resources :categories, except: [:new]
     resources :users, only: [:index, :edit, :show, :update]
   end
-  namespace :public do
+  scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about', as: 'about'
     resources :scores do
