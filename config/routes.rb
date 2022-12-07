@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
+  
+  devise_for :users, skip: [:password], controllers:{
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+  
+  devise_for :admins, skip: [:registrations, :password], controllers:{
+    sessions: 'admin/sessions'
+  }
 
   namespace :admin do
-    root to: 'homes#top'
+    root to: 'homes#top' #管理者側のルートをtop画面にする
     resources :scores, only: [:index, :show, :destroy]
     resources :cotegories, except: [:new]
     resources :users, only: [:index, :edit, :show, :update]
@@ -21,15 +30,6 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
   end
-  
-  devise_for :users, skip: [:password], controllers:{
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
-  
-  devise_for :admins, skip: [:registrations, :password], controllers:{
-    sessions: 'admin/sessions'
-  }
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
