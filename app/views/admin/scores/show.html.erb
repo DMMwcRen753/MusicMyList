@@ -1,2 +1,27 @@
-<h1>Admin::Scores#show</h1>
-<p>Find me in app/views/admin/scores/show.html.erb</p>
+<div class= "container" >
+  <div class= "row" >
+    <h2>商品詳細</h2>
+  </div>
+  <div class="row" >
+    <th class="col-6"><%= image_tag @score.get_file(400,400) %></th>
+    <table class="table table-bordered col-6 offset-1 ">
+      <tbody>
+        <tr>
+          <td class="text-white" style="background-color:rgba(130,0,0,0.8);">楽曲名</td>
+          <td style="background-color:rgba(255,255,255,0.5);"><%= @score.name %></td>
+        </tr>
+        <tr>
+          <td class="text-white" style="background-color:rgba(130,0,0,0.8);">アーティスト名</td>
+          <td style="background-color:rgba(255,255,255,0.5);"><%= @score.artist %></td>
+        </tr>
+        <tr>
+          <td class="text-white" style="background-color:rgba(130,0,0,0.8);">ジャンル</td>
+          <td style="background-color:rgba(255,255,255,0.5);"><%= @score.category.name %></td>
+        </tr>
+      </tbody>
+    </table>  
+  </div>
+  <div class="text-right" style="padding: 10px;">
+    <!--%= link_to "する", edit_admin_score_path(@score), class: "btn btn-success btn-lg" %-->
+  </div>
+</div>

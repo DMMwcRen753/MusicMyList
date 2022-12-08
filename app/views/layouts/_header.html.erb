@@ -6,7 +6,7 @@
     </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
-        <% if admin_signed_in? %> <--管理者側がログイン中か確認する-->
+        <% if admin_signed_in? %> <!--管理者側がログイン中か確認する-->
           <%= render 'layouts/header1' %>
         <% end %>
         <% if user_signed_in? %> <!--顧客側がログイン中か確認する-->

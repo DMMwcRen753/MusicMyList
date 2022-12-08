@@ -10,4 +10,8 @@ class User < ApplicationRecord
   
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   
+  def active_for_authentication?
+    super && (status == false)
+  end
+  
 end
