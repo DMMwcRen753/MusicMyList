@@ -1,2 +1,26 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<h3 class="text-center">マイページ</h3>
+<table class="container table table-borderless">
+  <tr class="row">
+   <td class="col text-center">
+     <h5 class="font-weight-bold">会員情報</h5>
+   </td>
+   <td class="col text-center">
+     <%= link_to "編集する", info_edit_path, class: 'text-dark btn btn-outline-warning btn-sm ' %>
+   </td>
+  </tr>
+</table>
+
+<div class="card w-50 mx-auto shadow-lg">
+  <table class="table">
+   <tr>
+     <td>氏名</td>
+     <td><%= @user.name %></td>
+   </tr>
+   <tr>
+     <td>メールアドレス</td>
+     <td><%= @user.email %></td>
+   </tr>
+  </table>
+ </div>
+
+

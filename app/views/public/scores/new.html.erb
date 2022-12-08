@@ -1,2 +1,28 @@
-<h1>Public::Scores#new</h1>
-<p>Find me in app/views/public/scores/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2>楽曲新規投稿</h2>
+    <div class="col-sm-12">
+      <%= form_with model: @score, url:admin_scores_path,  local: true do |f| %>
+        <div class="form-group row">
+          <%= f.label :楽譜ファイル, class: 'col-md-4' %>
+          <%= f.file_field :file, class: 'col-md-8', accept: "image/*" %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :楽曲名, class: 'col-md-4' %>
+          <%= f.text_field :name, class: 'col-md-8' %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :アーティスト名, class: 'col-md-4' %>
+          <%= f.text_area :artist, class: 'col-md-8' %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :ジャンル, class: 'col-md-4' %>
+          <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "ジャンルを選択してください" %>
+        </div>
+        <div class="form-group row">
+          <%= f.submit :新規登録, class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
