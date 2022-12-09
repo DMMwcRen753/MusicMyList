@@ -1,0 +1,23 @@
+<nav class="navbar navbar-dark bg-dark ">
+  <div class="container">
+    <a class="navbar-brand">MusicScoreList</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <% if admin_signed_in? %> <!--管理者側がログイン中か確認する-->
+          <%= render 'layouts/header1' %>
+        <% end %>
+        <% if user_signed_in? %> <!--顧客側がログイン中か確認する-->
+          <%= render 'layouts/header2' %>
+        <% else %><!--非ログイン時に表示するheader-->
+          <% unless admin_signed_in? %>
+            <%= render 'layouts/header3' %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+  

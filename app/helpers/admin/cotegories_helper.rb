@@ -1,0 +1,2 @@
+module Admin::CotegoriesHelper
+end

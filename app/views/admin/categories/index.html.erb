@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row-md">
+    <h2>カテゴリー一覧</h2>
+  </div>
+  <div class="row-md">
+    <%= form_with model: @category, url: admin_categories_path, local: true do |f| %>
+      <div class="form-group row">
+        <%= f.label :カテゴリー名, class: 'col-md-3 offset-1 text-center lead' %>
+        <%= f.text_field :name, class: 'col-md-4' %>
+        <%= f.submit :新規登録, class: 'btn btn-secondary col-md-2 offset-1' %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <table class="table table-hover">
+      <thead style="background-color:rgba(130,0,0,0.8);">
+        <tr>
+          <th class="text-white">カテゴリー名</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody style="background-color:rgba(255,255,255,0.5);">
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td><%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-success" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

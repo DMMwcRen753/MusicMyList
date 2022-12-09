@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 aligen-item-center">
+      <h2>商品一覧</h2>
+    </div>
+  </div>
+  <table class="table table-hover table-bordered">
+    <thead class="text-white" style="background-color:rgba(130,0,0,0.8);">
+      <tr>
+        <th>楽曲ID</th>
+        <th>楽曲名</th>
+        <th>カテゴリー</th>
+      </tr>
+    </thead>
+    <tbody style="background-color:rgba(255,255,255,0.5);">
+      <% @scores.each do |score| %>
+        <tr>
+          <td><%= score.id %></td>
+          <td><%= link_to score.name, admin_score_path(score) %></td>
+          <td><%= score.category.name if score.category.present? %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
