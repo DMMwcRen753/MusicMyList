@@ -3,7 +3,10 @@
     <h2>楽曲詳細</h2>
   </div>
   <div class="row" >
-    <th class="col-6"><%= image_tag @score.get_image(400,400) %></th>
+    <th class="col-6">
+      <% @score.image.each do |file| %>
+        <%= image_tag score.variant(resize: '500x500') %>
+      <% end %></th>
     <table class="table table-bordered col-6 offset-1 ">
       <tbody>
         <tr>
@@ -28,7 +31,7 @@
     </table>  
   </div>
   <div class="text-right" style="padding: 10px;">
-    <%= link_to "編集する", edit_admin_score_path(@score), class: "btn btn-success btn-lg" %>
+    <%= link_to "編集する", edit_score_path(@score), class: "btn btn-success btn-lg" %>
   </div>
   <div class="book-comments-index">
     <%= render "comments/index", score: @score %>

@@ -23,7 +23,7 @@ class Public::ScoresController < ApplicationController
   def create
     #idを付与して投稿を作成する
     @score = Score.new(score_params)
-    if @item.save#作成が成功した場合
+    if @score.save#作成が成功した場合
       redirect_to score_path(@score.id)#作成した投稿の詳細ページへ行く
     else#作成ができなかった場合
       render :new#作成画面へ戻る
@@ -43,7 +43,7 @@ class Public::ScoresController < ApplicationController
   private
   
   def score_params#入力されたデータが、作成データとして許可されているパラメータか確認する
-    params.require(:score).permit(:file, :name, :artist, :categories)
+    params.require(:score).permit( :name, :artist, :category, image: [])
   end
 
 end
