@@ -1,0 +1,11 @@
+<% if score.favorited_by?(current_user) %>
+  <%= link_to score_favorites_path(score), method: :delete, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+    <%= score.favorites.count %> いいね
+  <% end %>
+<% else %>
+  <%= link_to score_favorites_path(score), method: :post, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true"></i>
+    <%= score.favorites.count %> いいね
+  <% end %>
+<% end %>

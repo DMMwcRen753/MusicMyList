@@ -1,18 +1,15 @@
 class Public::FavoritesController < ApplicationController
   def create
-    @score = Score.find(params[:score_id])
-    @comment = current_user.comments.new(comment_params)
-    @comment.book_id = book.id
-    @comment.save
+    score = Score.find(params[:score_id])
+    @favorite = current_user.favorites.new(score_id: score.id)
+    @favorite.save
+    render 'replace_btn'
   end
 
   def destroy
-    @comment = Comment.find_by(id: params[:id], score_id: params[:score_id])
-    @comment.destroy
-  end
-
-  private
-  def comment_params
-    params.require(:comment).permit(:comment, :star)
+    score = Score.find(params[:score_id])
+    @favorite = current_user.favorites.find_by(score_id: score.id)
+    @favorite.destroy
+    render 'replace_btn'
   end
 end
