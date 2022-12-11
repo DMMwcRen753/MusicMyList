@@ -37,7 +37,7 @@ class Public::ScoresController < ApplicationController
     #idを参照して更新する投稿を探す
     @score = Score.find(params[:id])
     if @score.update(score_params)#更新が成功した場合
-      redirect_to score_path#更新した投稿の詳細ページへ行く
+      redirect_to score_path(@score.id)#更新した投稿の詳細ページへ行く
     else#更新ができなかった場合
       render 'edit'#編集画面へ戻る
     end

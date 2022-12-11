@@ -1,11 +1,19 @@
 <div class="container">
+  <% if @score.errors.any? %>
+    <%= @score.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @score.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <div class="row">
     <h2>楽曲新規投稿</h2>
     <div class="col-sm-12">
-      <%= form_with model: @score, url:admin_scores_path,  local: true do |f| %>
+      <%= form_with model: @score, local: true do |f| %>
         <div class="form-group row">
           <%= f.label :楽譜ファイル, class: 'col-md-4' %>
-          <%= f.file_field :file, class: 'col-md-8', accept: "image/*" %>
+          <%= f.file_field :images, multiple: true, class: 'col-md-8', accept: "image/*" %>
         </div>
         <div class="form-group row">
           <%= f.label :楽曲名, class: 'col-md-4' %>
@@ -16,8 +24,8 @@
           <%= f.text_area :artist, class: 'col-md-8' %>
         </div>
         <div class="form-group row">
-          <%= f.label :ジャンル, class: 'col-md-4' %>
-          <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "ジャンルを選択してください" %>
+          <%= f.label :カテゴリー, class: 'col-md-4' %>
+          <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "カテゴリーを選択してください" %>
         </div>
         <div class="form-group row">
           <%= f.submit :編集, class: 'btn btn-success' %>
