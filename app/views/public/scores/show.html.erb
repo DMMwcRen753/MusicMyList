@@ -4,8 +4,8 @@
   </div>
   <div class="row" >
     <th class="col-6">
-      <% @score.image.each do |file| %>
-        <%= image_tag score.variant(resize: '500x500') %>
+      <% @score.images.each do |file| %>
+        <%= image_tag @score.get_image(file, 100, 100) %>
       <% end %></th>
     <table class="table table-bordered col-6 offset-1 ">
       <tbody>
@@ -14,18 +14,14 @@
           <td style="background-color:rgba(255,255,255,0.5);"><%= @score.name %></td>
         </tr>
         <tr>
-          <td class="text-white" style="background-color:rgba(130,0,0,0.8);">商品説明</td>
-          <td style="background-color:rgba(255,255,255,0.5);"><%= @score.explanation %></td>
-        </tr>
-        <tr>
           <td class="text-white" style="background-color:rgba(130,0,0,0.8);">ジャンル</td>
-          <td style="background-color:rgba(255,255,255,0.5);"><%= @score.genre.name %></td>
+          <td style="background-color:rgba(255,255,255,0.5);"><%= @score.category.name %></td>
         </tr>
         <td class=<%= "favorite-" + @score.id.to_s %> >
-            <%= render "favorites/btn", score: @score %>
+            <%= render "public/favorites/btn", score: @score %>
         </td>
         <td class="book-comments-counter">
-          <%= render "comments/counter", score: @score %>
+          <%= render "public/comments/counter", score: @score %>
         </td>
       </tbody>
     </table>  
@@ -34,8 +30,8 @@
     <%= link_to "編集する", edit_score_path(@score), class: "btn btn-success btn-lg" %>
   </div>
   <div class="book-comments-index">
-    <%= render "comments/index", score: @score %>
+    <%= render "public/comments/index", score: @score %>
   </div>
       
-  <%= render "comments/form", score: @score, comment: @comment %>
+  <%= render "public/comments/form", score: @score, comment: @comment %>
 </div>

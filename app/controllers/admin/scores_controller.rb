@@ -14,9 +14,4 @@ class Admin::ScoresController < ApplicationController
     redirect_to admin_scores_path
   end
   
-  private
-  
-  def score_params#入力されたデータが、作成データとして許可されているパラメータか確認する
-    params.require(:score).permit(:file, :name, :artist, :categories)
-  end
 end

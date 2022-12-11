@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 2022_12_06_045801) do
     t.integer "category_id", null: false
     t.integer "user_id", null: false
     t.string "name", null: false
-    t.text "date", null: false
     t.string "artist", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
