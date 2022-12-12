@@ -9,6 +9,7 @@ class Public::ScoresController < ApplicationController
     @score = Score.find(params[:id]) #idを参照して一つの投稿を表示する
     @categories = Category.all #viewの表示フォームへ今あるカテゴリを全て渡す
     @comment = Comment.new
+    @mylist_score = MylistScore.new
   end
 
   def edit

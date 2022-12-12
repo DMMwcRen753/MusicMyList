@@ -21,6 +21,25 @@
      <td><%= @user.email %></td>
    </tr>
   </table>
- </div>
-
+</div>
+<div class="card w-50 mx-auto shadow-lg">
+  <table class="table">
+    <thead style= "background-color:rgba(130,0,0,0.8);", class="text-white">
+      <tr>
+        <th>マイリスト一覧</th>
+      </tr>
+    </thead>
+    <% @mylists.each do |mylist| %>
+      <tbody style="background-color:rgba(255,255,255,0.5);">
+        <tr>
+          <td>
+            <%= link_to mylist_path(mylist.id) do %>
+              <u><%= mylist.name %></u>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
 

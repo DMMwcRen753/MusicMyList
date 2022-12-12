@@ -1,32 +1,32 @@
 <table>
   <tbody>
-      <% score.comments.each do |comment| %>
-        <tr>
-          <td>
-            <%= link_to mypage_path(comment.user) do %>
-              <%= comment.user.name %>
-            <% end %>
-          </td>
-          <td><%= comment.comment %></td>
-          <td>
-            <% if comment.user == current_user %>
-              <%= link_to "Destroy", score_comment_path(score, comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
-            <% end %>
-          </td>
-          <td>内容:<%= comment.content%></td>
-          <td>評価 :<%= comment.star%>点</td>
-          <div id="star-rate<%= comment.id%>"></div>    
-          <script>
-            $('#star-rate<%= comment.id%>').raty({
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              half      : false,
-              readOnly: true,
-              score: <%= comment.star %>,
-            });
-          </script>
-        </tr>
-      <% end %>
+    <% score.comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= link_to mypage_path(comment.user) do %>
+            <%= comment.user.name %>
+          <% end %>
+        </td>
+        <td><%= comment.comment %></td>
+        <td>
+          <% if comment.user == current_user %>
+            <%= link_to "Destroy", score_comment_path(score, comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
+          <% end %>
+        </td>
+        <td>内容:<%= comment.content%></td>
+        <td>評価 :<%= comment.star%>点</td>
+        <div id="star-rate<%= comment.id%>"></div>    
+        <script>
+          $('#star-rate<%= comment.id%>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            half      : false,
+            readOnly: true,
+            score: <%= comment.star %>,
+          });
+        </script>
+      </tr>
+    <% end %>
   </tbody>
 </table>

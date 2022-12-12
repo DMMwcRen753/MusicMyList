@@ -1,2 +1,2 @@
-$('.comments-counter').html("<%= j(render 'comments/counter', score: @comment.score) %>")
-$('.comments-index').html("<%= j(render 'comments/index', score: @comment.score) %>")
+$('.comments-counter').html("<%= j(render 'public/comments/counter', score: @comment.score) %>")
+$('.comments-index').html("<%= j(render 'public/comments/index', score: @comment.score) %>")

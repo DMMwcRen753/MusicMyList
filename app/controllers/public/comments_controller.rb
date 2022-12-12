@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
   def create
-    score = Score.find(params[:book_id])
+    score = Score.find(params[:score_id])
     @comment = current_user.comments.new(comment_params)
     @comment.score_id = score.id
     @comment.save

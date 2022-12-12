@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   def show
    @user = User.find(current_user.id)
+   @mylists = current_user.mylists.all
   end
 
   def edit
@@ -23,7 +24,7 @@ class Public::UsersController < ApplicationController
 
   def withdraw
     @user = User.find(current_user.id)
-    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    # statusカラムをtrueに変更することにより削除フラグを立てる
     @user.update(status: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
