@@ -24,14 +24,10 @@ class Public::ScoreListsController < ApplicationController
   end
 
   def create
-    score = ScoreList.find_by(score_id: params[:score_list][:score_id], user_id: current_user.id)
-    if score
-      score.update
-    else
-      score_list = ScoreList.new(score_list_params)
-      score_list.user_id = current_user.id
-      score_list.save
-    end
+    @score = ScoreList.find_by(score_id: params[:score_list][:score_id], user_id: current_user.id)
+    score_list = ScoreList.new(score_list_params)
+    score_list.user_id = current_user.id
+    score_list.save
     redirect_to score_lists_path
   end
 

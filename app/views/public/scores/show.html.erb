@@ -12,6 +12,7 @@
         </div>
         <div class="col-md-6 offset-md-2">
           <%= form_with model: @score_list, url: score_lists_path, method: :post do |f| %>
+            <%= f.hidden_field :score_id, :value => @score.id %>
             <h4 class="ml-3 p-2"><%= @score.name %></h4>
             <h6 class="ml-3 p-2"><%= @score.artist %></h6>
             <div class="ml-3">

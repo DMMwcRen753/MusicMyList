@@ -1,2 +1,26 @@
-<h1>Public::Mylists#show</h1>
-<p>Find me in app/views/public/mylists/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <p><%= @mylist.name %></p>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead  style="background-color:rgba(130,0,0,0.8);", class="text-white"><!--追記-->
+          <tr>
+            <td>楽曲名</td>
+          </tr>
+        </thead>
+        <tbody style="background-color:rgba(255,255,255,0.5);">
+          <% @mylist_scores.each do |mylist_score| %>
+            <tr>
+              <td>
+                <%= link_to score_path(@score.id) do %>
+                  <u><%= mylist_score.score.name %></u>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

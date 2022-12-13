@@ -37,6 +37,9 @@
               <u><%= mylist.name %></u>
             <% end %>
           </td>
+          <td>
+            <%= link_to "削除する", mylist_path(mylist), method: :delete, class: "btn btn-success btn-lg" %>
+          </td>
         </tr>
       </tbody>
     <% end %>

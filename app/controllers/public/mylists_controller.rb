@@ -2,7 +2,7 @@ class Public::MylistsController < ApplicationController
   before_action :authenticate_user!
   def show
     @mylist =Mylist.find(params[:id])
-    @mylist_scores = MylistScores.where(mylist_id: @mylist.id)
+    # @mylist_scores = MylistScores.where(mylist_id: @mylist.id)
   end
 
   def edit
@@ -31,6 +31,7 @@ class Public::MylistsController < ApplicationController
   end
 
   def create
+    @score_lists = current_user.score_lists.all ##ログインカスタマーのカート内アイテムを指定
     @mylist = Mylist.new(mylist_params)
     @mylist.user_id = current_user.id
     if @mylist.save

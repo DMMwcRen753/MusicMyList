@@ -14,18 +14,6 @@
           <% end %>
         </td>
         <td>内容:<%= comment.content%></td>
-        <td>評価 :<%= comment.star%>点</td>
-        <div id="star-rate<%= comment.id%>"></div>    
-        <script>
-          $('#star-rate<%= comment.id%>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            half      : false,
-            readOnly: true,
-            score: <%= comment.star %>,
-          });
-        </script>
       </tr>
     <% end %>
   </tbody>
