@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :mylists, dependent: :destroy
+  has_many :score_lists, dependent: :destroy
   
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   

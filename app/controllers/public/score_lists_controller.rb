@@ -2,7 +2,7 @@ class Public::ScoreListsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @score_lists = current_customer.score_lists.all
+    @score_lists = current_user.score_lists.all
   end
   
   def update
@@ -19,7 +19,7 @@ class Public::ScoreListsController < ApplicationController
 
   def destroy_all
     ScoreList.destroy_all
-    current_customer.score_lists.destroy_all
+    current_user.score_lists.destroy_all
     redirect_to score_lists_path
   end
 

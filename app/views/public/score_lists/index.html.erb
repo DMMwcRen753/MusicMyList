@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4 offset-1 text-center pt-3">
+      <h3>作成予定リスト</h3>
+    </div>
+    <div class="col-4 offset-1 text-center pt-3">
+      <%= link_to "リストを空にする", destroy_all_path, method: :delete, data: { confirm: '本当に消しますか？' },  class: "btn btn-danger" %>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="text-white" style="background-color:rgba(130,0,0,0.8);">
+          <tr>
+            <th>楽曲名</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @score_lists.each do |score_list| %>
+        <tbody style="background-color:rgba(255,255,255,0.5);">
+          <tr>
+            <td>
+              <%= score_list.score.name %>
+            </td>
+            <td><%= link_to "削除する", score_list_path(score_list.id), method: :delete, data: { confirm: '本当に消しますか？' },  class: "btn btn-danger" %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-5">
+      <%= link_to "買い物を続ける", scores_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+  <div class="row mt-4 mb-4">
+    <div class="col text-center">
+      <% if @score_lists.any? %>
+        <%= link_to "マイリスト作成に進む", new_mylist_path, class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

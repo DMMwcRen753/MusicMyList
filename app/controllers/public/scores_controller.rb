@@ -9,7 +9,7 @@ class Public::ScoresController < ApplicationController
     @score = Score.find(params[:id]) #idを参照して一つの投稿を表示する
     @categories = Category.all #viewの表示フォームへ今あるカテゴリを全て渡す
     @comment = Comment.new
-    @mylist_score = MylistScore.new
+    @score_list = ScoreList.new
   end
 
   def edit
@@ -40,7 +40,7 @@ class Public::ScoresController < ApplicationController
     if @score.update(score_params)#更新が成功した場合
       redirect_to score_path(@score.id)#更新した投稿の詳細ページへ行く
     else#更新ができなかった場合
-      render 'edit'#編集画面へ戻る
+      render :edit#編集画面へ戻る
     end
   end
 

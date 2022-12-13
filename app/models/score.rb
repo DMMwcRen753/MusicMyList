@@ -3,6 +3,7 @@ class Score < ApplicationRecord
   has_many :comments, dependent: :destroy#一つの投稿に複数のコメントが付く
   has_many :favorites, dependent: :destroy#一つの投稿に複数のいいねが付く
   belongs_to :category #一つのカテゴリが複数の投稿を持つ
+  has_many :score_lists, dependent: :destroy
 
   validates :name,presence:true #タイトルが無ければ投稿、編集ができない
   validates :artist,presence:true #アーティスト名が無ければ投稿、編集ができない
