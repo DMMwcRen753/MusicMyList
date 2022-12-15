@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users, skip: [:password], controllers:{
+  devise_for :users, controllers:{
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: 'public/sessions',
+    passwords: 'public/passwords'
   }
 
   devise_for :admins, skip: [:registrations, :password], controllers:{
@@ -31,7 +32,11 @@ Rails.application.routes.draw do
     patch 'users/info' => 'users#update', as: 'info'
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
+    
+    
   end
+  
+  
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

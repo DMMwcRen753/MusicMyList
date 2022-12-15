@@ -15,6 +15,11 @@
             <%= f.hidden_field :score_id, :value => @score.id %>
             <h4 class="ml-3 p-2"><%= @score.name %></h4>
             <h6 class="ml-3 p-2"><%= @score.artist %></h6>
+            <div class="col-md-4" >
+              <% @score.images.each do |file| %>
+                <%= image_tag @score.get_image(file, 800, 800) %>
+              <% end %>
+            </div>
             <div class="ml-3">
               <%= f.submit "作成予定リストに入れる", class: "btn btn-block btn-secondary" %>
             </div>
@@ -23,9 +28,11 @@
       </div>
     </div>
   <div class="text-right" style="padding: 10px;">
-    <%= link_to "編集する", edit_score_path(@score), class: "btn btn-success btn-lg" %>
+    <% if @score.user == current_user %>
+      <%= link_to "編集する", edit_score_path(@score), class: "btn btn-success btn-lg" %>
+    <% end %>
   </div>
-  <div class="book-comments-index">
+  <div class="comments-index">
     <%= render "public/comments/index", score: @score %>
   </div>
       

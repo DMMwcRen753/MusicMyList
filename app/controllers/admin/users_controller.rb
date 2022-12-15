@@ -25,7 +25,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :email, :status)
+    params.require(:user).permit(:name, :email, :status)
     #名前・メアド・会員ステータス
     #上記以外の物が入らないように設定
   end

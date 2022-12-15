@@ -10,10 +10,10 @@
           </tr>
         </thead>
         <tbody style="background-color:rgba(255,255,255,0.5);">
-          <% @mylist_scores.each do |mylist_score| %>
+          <% @mylist_score.each do |mylist_score| %>
             <tr>
               <td>
-                <%= link_to score_path(@score.id) do %>
+                <%= link_to score_path(@score) do %>
                   <u><%= mylist_score.score.name %></u>
                 <% end %>
               </td>

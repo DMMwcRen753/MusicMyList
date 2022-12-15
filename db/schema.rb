@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2022_12_12_111020) do
     t.integer "user_id", null: false
     t.integer "score_id", null: false
     t.text "comment", null: false
-    t.integer "star", null: false
+    t.integer "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

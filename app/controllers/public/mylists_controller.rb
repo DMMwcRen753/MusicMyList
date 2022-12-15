@@ -2,7 +2,8 @@ class Public::MylistsController < ApplicationController
   before_action :authenticate_user!
   def show
     @mylist =Mylist.find(params[:id])
-    # @mylist_scores = MylistScores.where(mylist_id: @mylist.id)
+    @mylist_score = MylistScore.where(mylist_id: @mylist.id)
+    @score = Score.find_by(params[:id])
   end
 
   def edit
