@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     sessions: 'public/sessions',
     passwords: 'public/passwords'
   }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
 
   devise_for :admins, skip: [:registrations, :password], controllers:{
     sessions: 'admin/sessions'
@@ -32,8 +35,6 @@ Rails.application.routes.draw do
     patch 'users/info' => 'users#update', as: 'info'
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
-    
-    
   end
   
   

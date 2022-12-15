@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+  before_action :user_state, only: [:create]
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to scores_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
