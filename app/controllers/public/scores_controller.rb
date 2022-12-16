@@ -1,8 +1,10 @@
 class Public::ScoresController < ApplicationController
   before_action :authenticate_user!
+   
 
   def index
-    @scores = Score.all #全ての投稿を読み込ませる
+    @q = Score.ransack(params[:q])
+    @scores = @q.result
   end
 
   def show
