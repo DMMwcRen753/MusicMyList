@@ -4,9 +4,11 @@
     <td class="col text-center">
       <h5 class="font-weight-bold">会員情報</h5>
     </td>
-    <td class="col text-center">
-      <%= link_to "編集する", info_edit_path, class: 'text-dark btn btn-outline-warning btn-sm ' %>
-    </td>
+    <% if current_user.email != 'guest@example.com' %>
+      <td class="col text-center">
+        <%= link_to "編集する", info_edit_path, class: 'text-dark btn btn-outline-warning btn-sm ' %>
+      </td>
+    <% end %>
   </tr>
 </table>
 
