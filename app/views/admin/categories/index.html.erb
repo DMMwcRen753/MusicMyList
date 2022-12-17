@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row-md">
+  <div class="row-md text-center">
     <h2>カテゴリー一覧</h2>
   </div>
   <div class="row-md">
@@ -7,19 +7,19 @@
       <div class="form-group row">
         <%= f.label :カテゴリー名, class: 'col-md-3 offset-1 text-center lead' %>
         <%= f.text_field :name, class: 'col-md-4' %>
-        <%= f.submit :新規登録, class: 'btn btn-secondary col-md-2 offset-1' %>
+        <%= f.submit :新規登録, class: 'btn btn-primary col-md-2 offset-1' %>
       </div>
     <% end %>
   </div>
   <div class="row">
-    <table class="table table-hover">
+    <table class="table table-bordered">
       <thead style="background-color:rgba(130,0,0,0.8);">
         <tr>
-          <th class="text-white">カテゴリー名</th>
+          <th class="text-white text-center">カテゴリー名</th>
           <th></th>
         </tr>
       </thead>
-      <tbody style="background-color:rgba(255,255,255,0.5);">
+      <tbody class="text-center", style="background-color:rgba(255,255,255,0.5);">
         <% @categories.each do |category| %>
           <tr>
             <td><%= category.name %></td>

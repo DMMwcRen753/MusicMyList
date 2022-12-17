@@ -1,32 +1,29 @@
 <div class='container'>
-  <h3 class="pt-4">会員一覧</h3>
+  <h3 class="text-center pt-4">会員一覧</h3>
   <div class='row'>
-    <div class='col-md-8 offset-md-1 pt-4'>
-      <table class='table text-center'>
-        <thead style="background-color:rgba(130,0,0,0.8);", class="text-white">
-          <tr>
-            <th>会員ID</th>
-            <th>氏名</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <!--↓多分これ使う-->
-        <% @users.each do |user| %>
-        <tbody style="background-color:rgba(255,255,255,0.5);">
-          <tr>
-            <td><%= user.id %></td>
-            <td><%= link_to user.name , admin_user_path(user.id) %></td>
-            <td><%= user.email %></td>
-            <% if user.status %>
-              <td class="text-secondary"><b>退会</b></td>
-            <% else %>
-              <td class="text-success"><b>有効</b></td>
-            <% end %>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+    <table class='table text-center'>
+      <thead style="background-color:rgba(130,0,0,0.8);", class="text-white">
+        <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <% @users.each do |user| %>
+      <tbody style="background-color:rgba(255,255,255,0.5);">
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to user.name , admin_user_path(user.id) %></td>
+          <td><%= user.email %></td>
+          <% if user.status %>
+            <td class="text-secondary"><b>退会</b></td>
+          <% else %>
+            <td class="text-success"><b>有効</b></td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

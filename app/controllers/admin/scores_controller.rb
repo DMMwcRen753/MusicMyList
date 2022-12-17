@@ -10,6 +10,7 @@ class Admin::ScoresController < ApplicationController
   end
   
   def destroy
+    @score = Score.find(params[:id])
     @score.destroy
     redirect_to admin_scores_path
   end

@@ -1,5 +1,4 @@
 <div class="container">
-  <p id="notice"><%= notice %></p>
   <h3 class="text-center font-weight-bold" >投稿一覧</h3>
   <div class="row-responsive">
     <div class="text-center col-12 mb-2 mt-4 mr-2">
@@ -17,29 +16,28 @@
       <%= link_to "新規投稿", new_score_path, class: "btn btn-outline-primary btn-block" %>
     </div>
   </div>
-    <table class="table col-12 mb-2 mt-4 mr-2">
-      <thead>
-        <tr>
-          <%= search_form_for @q do |f| %>
-            <th class="text-center"><%= sort_link(@q, :name, "楽曲名") %></th>
-            <th class="text-center"><%= sort_link(@q, :artist, "アーティスト名") %></th>
-            <th class="text-center"><%= sort_link(@q, :favorites, "いいね数") %></th>
-            <th class="text-center"><%= sort_link(@q, :created_at, "投稿日時") %></th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @scores.each do |score| %>
-          <tr>
-            <td class="text-center"><%= link_to score.name,score, class: "score_#{score.id}" %></td>
-            <td class="text-center"><%= score.artist %></td>
-            <td class="text-center <%= "favorite-" + score.id.to_s %>" >
-              <%= render "public/favorites/btn", score: score%>
-            </td>
-            <td class="text-center"><%= l score.created_at %></td>
-          </tr>
+  <table class="table col-12 mb-2 mt-4 mr-2">
+    <thead>
+      <tr>
+        <%= search_form_for @q do |f| %>
+          <th class="text-center"><%= sort_link(@q, :name, "楽曲名") %></th>
+          <th class="text-center"><%= sort_link(@q, :artist, "アーティスト名") %></th>
+          <th class="text-center"><%= sort_link(@q, :favorites, "いいね数") %></th>
+          <th class="text-center"><%= sort_link(@q, :created_at, "投稿日時") %></th>
         <% end %>
-      </tbody>
-    </table>
-  </div>
+      </tr>
+    </thead>
+    <tbody>
+      <% @scores.each do |score| %>
+        <tr>
+          <td class="text-center"><%= link_to score.name,score, class: "score_#{score.id}" %></td>
+          <td class="text-center"><%= score.artist %></td>
+          <td class="text-center <%= "favorite-" + score.id.to_s %>" >
+            <%= render "public/favorites/btn", score: score%>
+          </td>
+          <td class="text-center"><%= l score.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
