@@ -5,21 +5,14 @@
   <div class="row" >
     <div class="col-9">
       <div class="row m-5 p-3 pb-5"  style="background-color:rgba(255,255,255,0.5);">
-        <div class="col-md-4" >
-          <% @score.images.each do |file| %>
-            <%= image_tag @score.get_image(file, 100, 100) %>
-          <% end %>
-        </div>
         <div class="col-md-6 offset-md-2">
           <%= form_with model: @score_list, url: score_lists_path, method: :post do |f| %>
             <%= f.hidden_field :score_id, :value => @score.id %>
             <h4 class="ml-3 p-2"><%= @score.name %></h4>
             <h6 class="ml-3 p-2"><%= @score.artist %></h6>
-            <div class="col-md-4" >
-              <% @score.images.each do |file| %>
-                <%= image_tag @score.get_image(file, 800, 800) %>
-              <% end %>
-            </div>
+            <% @score.images.each do |file| %>
+              <%= image_tag @score.get_image(file, 100, 100) %>
+            <% end %>
             <div class="ml-3">
               <%= f.submit "作成予定リストに入れる", class: "btn btn-block btn-secondary" %>
             </div>
