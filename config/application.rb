@@ -23,5 +23,6 @@ module MusicMyList
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.time_zone = 'Tokyo' #タイムゾーンを東京に変換する
   end
 end

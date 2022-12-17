@@ -4,6 +4,9 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(current_user.id)
     @mylists = current_user.mylists.all
+    favorites= Favorite.where(user_id: @user.id).pluck(:score_id)
+    @favorite_scores = Score.find(favorites)
+    @score = Score.find_by(params[:id])
   end
 
   def edit
@@ -32,6 +35,8 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  private
+  
   def user_params
     params.require(:user).permit(:email, :name)
   end
