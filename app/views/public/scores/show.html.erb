@@ -8,6 +8,7 @@
           <tr>
             <th>楽曲名</th>
             <th>アーティスト名</th>
+            <th>カテゴリー</th>
             <th><%= f.submit "スコアリスト", class: "btn btn-primary" %></th>
           </tr>
         </thead>
@@ -17,6 +18,7 @@
               <%= f.hidden_field :score_id, :value => @score.id %>
               <td><%= @score.name %></td>
               <td><%= @score.artist %></td>
+              <td><%= @score.category.name %></td>
               <td class=<%= "favorite-" + @score.id.to_s %> >
                 <%= render "public/favorites/btn", score: @score%>
               </td>

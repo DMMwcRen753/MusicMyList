@@ -22,6 +22,7 @@
         <%= search_form_for @q do |f| %>
           <th class="text-center"><%= sort_link(@q, :name, "楽曲名") %></th>
           <th class="text-center"><%= sort_link(@q, :artist, "アーティスト名") %></th>
+          <th class="text-center"><%= sort_link(@q, :category_id, "カテゴリー名") %></th>
           <th class="text-center"><%= sort_link(@q, :favorites, "いいね数") %></th>
           <th class="text-center"><%= sort_link(@q, :created_at, "投稿日時") %></th>
         <% end %>
@@ -32,6 +33,7 @@
         <tr>
           <td class="text-center"><%= link_to score.name,score, class: "score_#{score.id}" %></td>
           <td class="text-center"><%= score.artist %></td>
+          <td class="text-center"><%= score.category.name %></td>
           <td class="text-center <%= "favorite-" + score.id.to_s %>" >
             <%= render "public/favorites/btn", score: score%>
           </td>
