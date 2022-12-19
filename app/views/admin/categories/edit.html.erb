@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row-md">
-    <h2>カテゴリー編集</h2>
+    <h2 class="text-center">カテゴリー編集</h2>
   </div>
   <div class="row-md ">
     <%= form_with model: @category, url: admin_category_path, local: true do |f| %>
       <div class="form-group row d-flex align-items-center">
-        <%= f.label :ジャンル名, class: 'col-md-3 offset-1 text-center lead' %>
+        <%= f.label :カテゴリー名, class: 'col-md-3 offset-1 text-center lead' %>
         <%= f.text_field :name, class: 'col-md-4' %>
-        <%= f.submit :編集, class: 'btn btn-outline-success col-md-2 offset-1' %>
+        <%= f.submit :編集, class: 'btn btn-success col-md-2 offset-1' %>
       </div>
     <% end %>
   </div>

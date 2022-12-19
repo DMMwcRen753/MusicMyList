@@ -1,27 +1,31 @@
 <div class= "container" >
-  <div class= "row" >
-    <h2>商品詳細</h2>
-  </div>
-  <div class="row" >
-    <th class="col-6"><%= image_tag @score.get_file(400,400) %></th>
-    <table class="table table-bordered col-6 offset-1 ">
-      <tbody>
-        <tr>
-          <td class="text-white" style="background-color:rgba(130,0,0,0.8);">楽曲名</td>
-          <td style="background-color:rgba(255,255,255,0.5);"><%= @score.name %></td>
-        </tr>
-        <tr>
-          <td class="text-white" style="background-color:rgba(130,0,0,0.8);">アーティスト名</td>
-          <td style="background-color:rgba(255,255,255,0.5);"><%= @score.artist %></td>
-        </tr>
-        <tr>
-          <td class="text-white" style="background-color:rgba(130,0,0,0.8);">ジャンル</td>
-          <td style="background-color:rgba(255,255,255,0.5);"><%= @score.category.name %></td>
-        </tr>
-      </tbody>
-    </table>  
-  </div>
-  <div class="text-right" style="padding: 10px;">
-    <!--%= link_to "する", edit_admin_score_path(@score), class: "btn btn-success btn-lg" %-->
-  </div>
+<%= form_with model: @score_list, url: score_lists_path, method: :post do |f| %>
+    <%= f.hidden_field :score_id, :value => @score.id %>
+    <h2 class="text-center font-weight-bold">楽曲詳細</h2>
+    <div class="row" >
+      <table class="table">
+        <thead>
+          <tr>
+            <th>楽曲名</th>
+            <th>アーティスト名</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <%= form_with model: @score_list, url: score_lists_path, method: :post do |f| %>
+              <%= f.hidden_field :score_id, :value => @score.id %>
+              <td><%= @score.name %></td>
+              <td><%= @score.artist %></td>
+              <td><%= link_to "削除", admin_score_path(@score), method: :delete, class: "btn btn-danger pull-right", remote: true %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row" style="justify-content: center">
+      <% @score.images.each do |file| %>
+        <%= image_tag @score.get_image(file, 600, 600) ,style: "width:95%"%>
+      <% end %>
+    </div>
+  <% end %>
 </div>

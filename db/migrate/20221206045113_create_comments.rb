@@ -5,7 +5,7 @@ class CreateComments < ActiveRecord::Migration[6.1]
       t.integer :user_id,  null: false, foreign_key: true
       t.integer :score_id, null: false, foreign_key: true
       t.text :comment,     null: false
-      t.integer :star,     null:false
+      t.integer :star
 
       t.timestamps
     end

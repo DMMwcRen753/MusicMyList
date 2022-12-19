@@ -1,0 +1,6 @@
+<%= form_with(model:[score, comment], local: false) do |f| %>
+    <div class="form-group row">
+    <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100 comment-textarea" %>
+    <%= f.submit "送信する", class: "btn btn-secondary btn-base-1 mt-20 pull-right" %>
+    </div>
+<% end %>

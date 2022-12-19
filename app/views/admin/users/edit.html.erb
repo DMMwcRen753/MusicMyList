@@ -1,32 +1,31 @@
 
-<div class='container'>
+<div class='container text-center'>
   <h3 class= "pt-4"><%= @user.name %>さんの会員情報編集</h3>
-  <div class='row'>
-
-  </div>
   <div class="row">
-    <%= form_with model: @user, url: admin_user_path(@user.id), local: true ,method: :patch do |f| %>
-      <table class='table table-borderless', style="background-color:rgba(255,255,255,0.5);">
-        <tr class="form-group">
-          <th style= "background-color: #880000;", class="text-white">会員ID</th>
-          <td class="text-center"><%= @user.id %></td>
-        </tr>
-        <tr class="form-group">
-          <th style= "background-color: #880000;", class="text-white"><%= f.label :"氏名"%></th>
-          <td><%= f.text_field :name, value: @user.name %></td>
-        </tr>
-        <tr class="form-group">
-          <th  style= "background-color: #880000;", class="text-white"><%=f.label :"メールアドレス"%></th>
-          <td><%= f.text_field :email, value: @user.email %></td>
-        </tr>
-        <tr class="form-group">
-          <th  style= "background-color: #880000;", class="text-white"><%=f.label :"会員ステータス"%></th>
-          <td>
-            <%= f.radio_button :status, 0, checked: true %>有効
-            <%= f.radio_button :status, 1 %>退会
-          </td>
-      </table>
-      <%= f.submit '変更を保存',class: 'btn btn-success' %>
-    <% end %>
+    <div class="col-12">
+      <%= form_with model: @user, url: admin_user_path(@user.id), local: true , method: :patch do |f| %>
+        <table class='table table-borderless', style="background-color:rgba(255,255,255,0.5);">
+          <tr class="form-group">
+            <th style= "background-color: #880000;", class="text-white">会員ID</th>
+            <td class="text-center"><%= @user.id %></td>
+          </tr>
+          <tr class="form-group">
+            <th style= "background-color: #880000;", class="text-white"><%= f.label :"氏名"%></th>
+            <td><%= f.text_field :name, value: @user.name %></td>
+          </tr>
+          <tr class="form-group">
+            <th  style= "background-color: #880000;", class="text-white"><%=f.label :"メールアドレス"%></th>
+            <td><%= f.text_field :email, value: @user.email %></td>
+          </tr>
+          <tr class="form-group">
+            <th  style= "background-color: #880000;", class="text-white"><%=f.label :"会員ステータス"%></th>
+            <td>
+              <%= f.radio_button :status, 0, checked: true %>有効
+              <%= f.radio_button :status, 1 %>退会
+            </td>
+        </table>
+        <%= f.submit '変更を保存',class: 'btn btn-success' %>
+      <% end %>
+    </div>
   </div>
 </div>

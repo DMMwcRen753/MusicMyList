@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_06_045801) do
+ActiveRecord::Schema.define(version: 2022_12_12_111020) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2022_12_06_045801) do
     t.integer "user_id", null: false
     t.integer "score_id", null: false
     t.text "comment", null: false
-    t.integer "star", null: false
+    t.integer "star"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,10 +74,23 @@ ActiveRecord::Schema.define(version: 2022_12_06_045801) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "mylist_scores", force: :cascade do |t|
+    t.integer "mylist_id", null: false
+    t.integer "score_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "mylists", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "score_id", null: false
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "score_lists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "score_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -86,7 +99,6 @@ ActiveRecord::Schema.define(version: 2022_12_06_045801) do
     t.integer "category_id", null: false
     t.integer "user_id", null: false
     t.string "name", null: false
-    t.text "date", null: false
     t.string "artist", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

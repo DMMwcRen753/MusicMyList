@@ -1,26 +1,74 @@
 <h3 class="text-center">マイページ</h3>
-<table class="container table table-borderless">
-  <tr class="row">
-   <td class="col text-center">
-     <h5 class="font-weight-bold">会員情報</h5>
-   </td>
-   <td class="col text-center">
-     <%= link_to "編集する", info_edit_path, class: 'text-dark btn btn-outline-warning btn-sm ' %>
-   </td>
-  </tr>
-</table>
-
-<div class="card w-50 mx-auto shadow-lg">
-  <table class="table">
-   <tr>
-     <td>氏名</td>
-     <td><%= @user.name %></td>
-   </tr>
-   <tr>
-     <td>メールアドレス</td>
-     <td><%= @user.email %></td>
-   </tr>
-  </table>
- </div>
-
-
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <h5 class="text-center font-weight-bold">会員情報</h5>
+      <table class="table">
+        <tr>
+          <td>氏名</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+      <div class="row">
+        <% if current_user.email != 'guest@example.com' %>
+          <td class="col text-center">
+            <%= link_to  info_edit_path, class: 'btn btn-outline-primary btn-block' do %>
+              <i class="fas fa-user-cog"></i>
+            <% end %>
+          </td>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>マイリスト一覧</th>
+          </tr>
+        </thead>
+        <% @mylists.each do |mylist| %>
+          <tbody style="background-color:rgba(255,255,255,0.5);">
+            <tr>
+              <td>
+                <%= link_to mylist_path(mylist.id) do %>
+                  <u><%= mylist.name %></u>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to "削除する", mylist_path(mylist), method: :delete, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-10 offset-md-1">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class="text-center">いいねした楽曲一覧</th>
+            <th class="col-3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @favorite_scores.each do |favorite_score|%>
+            <tr>
+              <td>
+                <%= link_to score_path(@score) do %>
+                  <u><%= favorite_score.name %></u>
+                <% end %>
+              </td>
+              <td class=<%= "favorite-" + @score.id.to_s %> >
+                <%= render "public/favorites/btn", score: @score%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

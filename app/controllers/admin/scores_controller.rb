@@ -10,13 +10,9 @@ class Admin::ScoresController < ApplicationController
   end
   
   def destroy
+    @score = Score.find(params[:id])
     @score.destroy
     redirect_to admin_scores_path
   end
   
-  private
-  
-  def score_params#入力されたデータが、作成データとして許可されているパラメータか確認する
-    params.require(:score).permit(:file, :name, :artist, :categories)
-  end
 end
