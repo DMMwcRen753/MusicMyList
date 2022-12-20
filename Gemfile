@@ -3,13 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
-gem 'net-smtp'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -62,3 +61,12 @@ gem 'hirb' #出力結果を表として出力するgem
 gem 'hirb-unicode' #マルチバイト文字の表示を補正するgem
 gem 'rails-i18n'
 gem "ransack"
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"
