@@ -24,4 +24,18 @@ class Score < ApplicationRecord
     end
     image.variant(resize_to_fill: [width, height], gravity: :center).processed
   end
+  
+  ransacker :favorite_count do
+      query = <<-SQL
+        (SELECT
+           COUNT(favorites.score_id)
+         FROM
+           favorites
+         WHERE
+           favorites.score_id = scores.id
+         GROUP BY
+           favorites.score_id)
+      SQL
+      Arel.sql(query)
+  end
 end
