@@ -27,7 +27,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>マイリスト一覧</th>
+            <th class="text-center">マイリスト一覧</th>
           </tr>
         </thead>
         <% @mylists.each do |mylist| %>
@@ -51,19 +51,15 @@
         <thead>
           <tr>
             <th class="text-center">いいねした楽曲一覧</th>
-            <th class="col-3"></th>
           </tr>
         </thead>
         <tbody>
           <% @favorite_scores.each do |favorite_score|%>
             <tr>
-              <td>
+              <td class="text-center">
                 <%= link_to score_path(@score) do %>
                   <u><%= favorite_score.name %></u>
                 <% end %>
-              </td>
-              <td class=<%= "favorite-" + @score.id.to_s %> >
-                <%= render "public/favorites/btn", score: @score%>
               </td>
             </tr>
           <% end %>
