@@ -22,7 +22,10 @@
 楽曲の譜面を確認したい時
 
 ## 設計書
-<...>
+###テーブル定義書
+https://docs.google.com/spreadsheets/d/1fsnDO-5pEIANOf5oxgvzTB8FLxTVBNQieYtYq5z5ikU/edit#gid=1373217982
+###ER図
+https://app.diagrams.net/#G1NyDqJm-1MDRcF4-1Nx4t8l75MlK9PuhW
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -30,6 +33,3 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-- 使用検討中です
