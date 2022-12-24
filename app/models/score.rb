@@ -26,16 +26,18 @@ class Score < ApplicationRecord
   end
   
   ransacker :favorite_count do
-      query = <<-SQL
-        (SELECT
-           COUNT(favorites.score_id)
-         FROM
-           favorites
-         WHERE
-           favorites.score_id = scores.id
-         GROUP BY
-           favorites.score_id)
-      SQL
-      Arel.sql(query)
+    query = <<-SQL
+    (
+      SELECT
+      COUNT(favorites.score_id)
+      FROM
+        favorites
+      WHERE
+        favorites.score_id = scores.id
+      GROUP BY
+        favorites.score_id
+    )
+    SQL
+    Arel.sql(query)
   end
 end

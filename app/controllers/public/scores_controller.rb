@@ -1,6 +1,5 @@
 class Public::ScoresController < ApplicationController
   before_action :authenticate_user!
-   
 
   def index
     @q = Score.ransack(params[:q])
