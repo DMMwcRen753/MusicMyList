@@ -4,6 +4,7 @@ class Public::ScoresController < ApplicationController
   def index
     @q = Score.ransack(params[:q])
     @scores = @q.result
+    @categories = Category.all
   end
 
   def show
