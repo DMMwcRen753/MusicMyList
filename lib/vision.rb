@@ -9,8 +9,9 @@ module Vision
       api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_API_KEY']}"
 
       # 画像をbase64にエンコード
-      dir_tree =  image_file.key.scan(/.{1,#{2}}/)
-      base64_image = Base64.encode64(open("#{Rails.root}/public/uploads/#{dir_tree[0]}/#{dir_tree[1]}/#{image_file.key}").read)
+      #dir_tree =  image_file.key.scan(/.{1,#{2}}/)
+      #base64_image = Base64.encode64(open("#{Rails.root}/public/uploads/#{dir_tree[0]}/#{dir_tree[1]}/#{image_file.key}").read)
+      base64_image = Base64.encode64(image_file.tempfile.read) #save前の画像ファイルをエンコードしている
 
       # APIリクエスト用のJSONパラメータ
       params = {
@@ -38,7 +39,7 @@ module Vision
       if (error = response_body['responses'][0]['error']).present?
         raise error['message']
       else
-        response_body['responses'][0]['labelAnnotations'].pluck('description').take(3)
+        response_body['responses'][0]['labelAnnotations'].pluck('description') #.take(3)
       end
     end
   end

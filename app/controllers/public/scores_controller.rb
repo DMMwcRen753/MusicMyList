@@ -26,14 +26,15 @@ class Public::ScoresController < ApplicationController
 
   def create
     #idを付与して投稿を作成する
+    @categories = Category.all
     @score = Score.new(score_params)
     @score.user_id = current_user.id
 
+    unless labels_check(@score) #画像の識別ロジックへ移行する
+      render :new#作成画面へ戻る
+      return
+    end
     if @score.save#作成が成功した場合
-      # tags = Vision.get_image_data(@score.images)
-      # tags.each do |tag|
-      #   @score.tags.create(name: tag)
-      # end
       redirect_to score_path(@score.id)#作成した投稿の詳細ページへ行く
     else#作成ができなかった場合
       render :new#作成画面へ戻る
@@ -54,6 +55,20 @@ class Public::ScoresController < ApplicationController
 
   def score_params#入力されたデータが、作成データとして許可されているパラメータか確認する
     params.require(:score).permit(:name, :artist, :category_id, images: [])
+  end
+
+  def labels_check(score)
+    return true unless params[:score][:images] #画像の投稿があるかを判定する
+    params[:score][:images].each do | image | #複数の画像を一つずつ判定する
+      labels = Vision.get_image_data(image)
+      pp labels 
+      if !labels.include?('Rectangle') || !labels.include?('Parallel') || !labels.include?('Slope')
+        score.invalid?
+        score.errors.add(:images, 'は楽譜以外の画像が含まれています')
+        return false
+      end
+    end
+    return true
   end
 
 end
