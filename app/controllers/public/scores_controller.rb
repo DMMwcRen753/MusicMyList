@@ -61,10 +61,12 @@ class Public::ScoresController < ApplicationController
     return true unless params[:score][:images] #画像の投稿があるかを判定する
     params[:score][:images].each do | image | #複数の画像を一つずつ判定する
       labels = Vision.get_image_data(image)
-      pp labels 
+      pp labels #コンソール上に投稿画像のすべてのlabelを表示
+      
+      #以下のlabelが投稿画像にすべて存在するかを判定する　一つでも無い場合はfalseを返す
       if !labels.include?('Rectangle') || !labels.include?('Parallel') || !labels.include?('Slope')
-        score.invalid?
-        score.errors.add(:images, 'は楽譜以外の画像が含まれています')
+        score.invalid? #scoreモデルのバリデーションエラーを返す
+        score.errors.add(:images, 'は楽譜以外の画像が含まれています') #投稿画像にlabelが不足していることを通知する
         return false
       end
     end
