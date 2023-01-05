@@ -30,6 +30,10 @@ class Public::ScoresController < ApplicationController
     @score.user_id = current_user.id
 
     if @score.save#作成が成功した場合
+      # tags = Vision.get_image_data(@score.images)
+      # tags.each do |tag|
+      #   @score.tags.create(name: tag)
+      # end
       redirect_to score_path(@score.id)#作成した投稿の詳細ページへ行く
     else#作成ができなかった場合
       render :new#作成画面へ戻る
