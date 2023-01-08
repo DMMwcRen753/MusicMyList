@@ -1,23 +1,44 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-3 aligen-item-center">
-      <h2>投稿一覧</h2>
+  <h3 class="text-center font-weight-bold" >投稿一覧</h3>
+  <div class="row-responsive">
+    <div class="text-center col-12 mb-2 mt-4 mr-2">
+      <!--検索用フォーム-->
+      <%= search_form_for @q do |f| %>
+        <%= f.label :name, "タイトルを入力" %>
+        <%= f.text_field :name_cont, placeholder: "入力", class: "mr-3" %>
+        <%= f.label :artist, "アーティスト名を入力" %>
+        <%= f.text_field :artist_cont, placeholder: "入力", class: "mr-3" %>
+        <%= f.label :category, "楽器を選択" %>
+        <%= f.collection_select :category_id_eq, @categories, :id, :name, {include_blank: "----"}%>
+        <%= f.submit ("検索"), class: "btn btn-success btn-sm" %>
+      <% end %>
     </div>
   </div>
-  <table class="table table-hover table-bordered">
-    <thead class="text-white" style="background-color:rgba(130,0,0,0.8);">
+  <table class="table col-12 mb-2 mt-4 mr-2">
+    <thead>
       <tr>
-        <th>楽曲ID</th>
-        <th>楽曲名</th>
-        <th>カテゴリー</th>
+        <!--ソート機能付き各項目-->
+        <%= search_form_for @q do |f| %>
+          <th class="text-center"><%= sort_link(@q, :name, "楽曲名") %></th>
+          <th class="text-center"><%= sort_link(@q, :artist, "アーティスト名") %></th>
+          <th class="text-center"><%= sort_link(@q, :category_id, "カテゴリー名") %></th>
+          <th class="text-center"><%= sort_link(@q, :favorite_count, "いいね数") %></th>
+          <th class="text-center"><%= sort_link(@q, :created_at, "投稿日時") %></th>
+        <% end %>
       </tr>
     </thead>
-    <tbody style="background-color:rgba(255,255,255,0.5);">
+    <tbody>
+      <!--投稿されたデータ情報-->
       <% @scores.each do |score| %>
         <tr>
-          <td><%= score.id %></td>
-          <td><%= link_to score.name, admin_score_path(score) %></td>
-          <td><%= score.category.name if score.category.present? %></td>
+          <td class="text-center"><%= link_to score.name,score, class: "score_#{score.id}" %></td>
+          <td class="text-center"><%= score.artist %></td>
+          <td class="text-center"><%= score.category.name %></td>
+          <td class="text-center">
+            <i class="fas fa-heart" aria-hidden="true"></i>
+            <%= score.favorites.count %> いいね
+          </td>
+          <td class="text-center"><%= l score.created_at %></td>
         </tr>
       <% end %>
     </tbody>

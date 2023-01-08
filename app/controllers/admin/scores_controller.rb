@@ -1,7 +1,9 @@
 class Admin::ScoresController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @scores = Score.all #全ての投稿を読み込ませる
+    @q = Score.ransack(params[:q])
+    @scores = @q.result
+    @categories = Category.all
   end
 
   def show
