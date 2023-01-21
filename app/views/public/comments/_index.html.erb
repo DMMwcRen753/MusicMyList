@@ -5,13 +5,15 @@
       <tr>
         <th>ユーザー名</th>
         <th>コメント</th>
+        <th>コメント日時</th>
       </tr>
     </thead>
     <tbody>
       <% score.comments.each do |comment| %>
         <tr>
           <td class="col-2"><%= comment.user.name %></td>
-          <td class="col-8"><%= comment.comment %></td>
+          <td class="col-6"><%= comment.comment %></td>
+          <td class="col-2"><%= l comment.created_at %></td>
           <td class="col-2">
             <% if comment.user == current_user %>
               <%= link_to "Destroy", score_comment_path(score, comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
