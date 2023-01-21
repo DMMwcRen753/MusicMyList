@@ -33,8 +33,8 @@ class Public::SessionsController < Devise::SessionsController
   
   protected
 
-  def after_user_sign_in_path_for(resource)　#ログイン成功時の環移先指定
-    mypage_path
+  def after_sign_in_path_for(resource)#ログイン成功時の環移先指定
+    scores_path
   end
 
   def after_sign_out_path_for(resource) #ログアウト成功時の環移先指定

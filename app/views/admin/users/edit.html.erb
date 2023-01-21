@@ -20,8 +20,11 @@
           <tr class="form-group">
             <th  style= "background-color: #880000;", class="text-white"><%=f.label :"会員ステータス"%></th>
             <td>
-              <%= f.radio_button :status, 0, checked: true %>有効
-              <%= f.radio_button :status, 1 %>退会
+              <%= f.radio_button :status, 0, checked: true %>
+              <%= f.label :status, '有効', value: 0 %>
+              <%= f.radio_button :status, 1 %>
+              <%= f.label :status, '退会', value: 1 %>
+              
             </td>
         </table>
         <%= f.submit '変更を保存',class: 'btn btn-success' %>

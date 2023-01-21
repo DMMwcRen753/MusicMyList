@@ -15,13 +15,13 @@
           <% @mylist_score.each do |mylist_score| %>
             <tr>
               <td>
-                <%= link_to score_path(@score) do %>
+                <%= link_to score_path(mylist_score.score.id) do %>
                   <u><%= mylist_score.score.name %></u>
                 <% end %>
               </td>
               <td><%= mylist_score.score.artist %></td>
-              <td class=<%= "favorite-" + @score.id.to_s %> >
-                <%= render "public/favorites/btn", score: @score%>
+              <td class=<%= "favorite-" + mylist_score.score.id.to_s %> >
+                <%= render "public/favorites/btn", score: mylist_score.score %>
               </td>
             </tr>
           <% end %>
