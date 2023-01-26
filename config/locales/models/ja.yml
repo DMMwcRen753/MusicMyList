@@ -1,10 +1,23 @@
 ja:
   activerecord:
     attributes:
-      user:
-        name: 名前
-        email: メールアドレス
-        password: パスワード
+      score:
+        name: タイトル
+        artist: アーティスト
+        images: 楽譜
+        category_id: 楽器
+    errors:
+      models:
+        score:
+          attributes:
+            name:
+              blank: がありません。入力してください。
+            artist:
+              blank: 名がありません。入力してください。
+            images:
+              blank: がありません。選択してください。
+            category_id:
+              blank: が選択されていません。選択してください。
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"

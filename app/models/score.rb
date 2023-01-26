@@ -5,10 +5,10 @@ class Score < ApplicationRecord
   belongs_to :category #一つのカテゴリが複数の投稿を持つ
   has_many :score_lists, dependent: :destroy
 
-  validates :name,presence:true #タイトルが無ければ投稿、編集ができない
-  validates :artist,presence:true #アーティスト名が無ければ投稿、編集ができない
+  validates :name, presence:true #タイトルが無ければ投稿、編集ができない
+  validates :artist, presence:true #アーティスト名が無ければ投稿、編集ができない
 
-  validates :images,presence:true #ファイルが無ければ投稿、編集ができない
+  validates :images, presence:true #ファイルが無ければ投稿、編集ができない
   validates :category_id, presence: true #カテゴリーが無ければ投稿、編集ができない
 
   has_many_attached :images
