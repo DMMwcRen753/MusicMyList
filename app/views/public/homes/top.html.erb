@@ -1,13 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-7 text-center">
-      <h1 class="display-1">
-        Music<br>
-        Score<br>
-        List
-      </h1>
+<div class="container text-center">
+  <h1 class="display-1">
+    Music<br>
+    Score<br>
+    List
+  </h1>
+</div>
+<% if user_signed_in? %>
+  <div class="container pt-5">
+    <div class="row pt-5">
+      <%= link_to "マイページ", mypage_path, class: 'btn btn-info btn-sm btn-block mb-3' %><!--会員一覧へのリンク-->
     </div>
-    <div class="col-sm-5 pt-5">
+    <div class="row pt-5">
+      <%= link_to "投稿一覧", scores_path, class: 'btn btn-success btn-sm btn-block mb-3' %><!--投稿楽譜一覧へのリンク-->
+    </div>
+    <div class="row pt-5">
+      <%= link_to "ログアウト", destroy_user_session_path, class: 'btn btn-info btn-sm btn-block mb-3', method: :delete %><!--ログアウトへのリンク-->
+    </div>
+  </div>
+<% else %>
+  <% unless admin_signed_in? %>
+    <div class="container pt-5">
       <div class="row pt-5">
         <%= link_to 'ログイン',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
       </div>
@@ -18,5 +30,5 @@
         <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "btn btn-info btn-sm btn-block mb-3 guest_sign_in" %>
       </div>
     </div>
-  </div>
-</div>
+  <% end %>
+<% end %>

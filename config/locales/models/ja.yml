@@ -1,6 +1,8 @@
 ja:
   activerecord:
     attributes:
+      category:
+        name: 楽器
       score:
         name: タイトル
         artist: アーティスト
