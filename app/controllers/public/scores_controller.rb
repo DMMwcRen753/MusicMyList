@@ -64,7 +64,7 @@ class Public::ScoresController < ApplicationController
       pp labels #コンソール上に投稿画像のすべてのlabelを表示
       
       #以下のlabelが投稿画像にすべて存在するかを判定する　一つでも無い場合はfalseを返す
-      if !labels.include?('Rectangle') || !labels.include?('Parallel') || !labels.include?('Slope')
+      if !labels.include?('Rectangle') && !labels.include?('Parallel') && !labels.include?('Slope')
         score.invalid? #scoreモデルのバリデーションエラーを返す
         score.errors.add(:images, 'に無関係な画像が含まれています') #投稿画像にlabelが不足していることを通知する
         return false
