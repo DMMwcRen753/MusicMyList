@@ -10,6 +10,9 @@
             <th>アーティスト名</th>
             <th>カテゴリー</th>
             <th><%= f.submit "スコアリスト", class: "btn btn-primary" %></th>
+            <% if @score.user == current_user %>
+              <th><%= link_to "削除", @score, method: :delete, date: {confirm: '本当に消しますか？' }, class: "btn btn-danger " %></th>
+            <% end %>
           </tr>
         </thead>
         <tbody>

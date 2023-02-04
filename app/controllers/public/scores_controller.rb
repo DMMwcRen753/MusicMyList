@@ -1,5 +1,6 @@
 class Public::ScoresController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_matching_user, only: [:edit,:update,:destroy]
 
   def index
     @q = Score.ransack(params[:q])
@@ -15,6 +16,7 @@ class Public::ScoresController < ApplicationController
   end
 
   def edit
+    is_matching_user
     @score = Score.find(params[:id]) #idを参照して一つの投稿を表示する
     @categories = Category.all #viewの表示フォームへ今あるカテゴリを全て渡す
   end
@@ -40,8 +42,16 @@ class Public::ScoresController < ApplicationController
       render :new#作成画面へ戻る
     end
   end
+  
+  def destroy
+    is_matching_user
+    @score = Score.find(params[:id])
+    @score.destroy
+    redirect_to scores_path
+  end
 
   def update
+    is_matching_user
     #idを参照して更新する投稿を探す
     @score = Score.find(params[:id])
     if @score.update(score_params)#更新が成功した場合
@@ -71,6 +81,14 @@ class Public::ScoresController < ApplicationController
       end
     end
     return true
+  end
+  
+  def is_matching_user
+    @score = Score.find(params[:id])
+    unless @score.user.id == current_user.id
+      flash[:notice] = "投稿者以外は編集、削除ができません"
+      redirect_to score_path(@score.id)
+    end
   end
 
 end
